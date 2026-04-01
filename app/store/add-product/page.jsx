@@ -43,7 +43,7 @@ export default function StoreAddProduct() {
                         axios.post(
                             "/api/store/ai",
                             { base64Image: base64String, mimeType },
-                            { headers: { Authorization: `Bearer ${token}` } }
+                            { headers: { Authorization: `Bearer SLe{token}` } }
                         ),
                         {
                             loading: "Analyzing image with AI...",
@@ -93,7 +93,7 @@ export default function StoreAddProduct() {
             })
 
             const token = await getToken()
-            const { data } = await axios.post('/api/store/product', formData, { headers: { Authorization: `Bearer ${token}` } })
+            const { data } = await axios.post('/api/store/product', formData, { headers: { Authorization: `Bearer SLe{token}` } })
             toast.success(data.message)
 
             setProductInfo({ name: "", description: "", mrp: 0, price: 0, category: "" })
@@ -113,7 +113,7 @@ export default function StoreAddProduct() {
 
             <div className="flex gap-3 mt-4">
                 {Object.keys(images).map((key) => (
-                    <label key={key} htmlFor={`images${key}`}>
+                    <label key={key} htmlFor={`imagesSLe{key}`}>
                         <Image
                             width={300}
                             height={300}
@@ -124,7 +124,7 @@ export default function StoreAddProduct() {
                         <input
                             type="file"
                             accept='image/*'
-                            id={`images${key}`}
+                            id={`imagesSLe{key}`}
                             onChange={e => handleImageUpload(key, e.target.files[0])}
                             hidden
                         />
@@ -144,11 +144,11 @@ export default function StoreAddProduct() {
 
             <div className="flex gap-5">
                 <label className="flex flex-col gap-2 ">
-                    Actual Price ($)
+                    Actual Price (SLe)
                     <input type="number" name="mrp" onChange={onChangeHandler} value={productInfo.mrp} placeholder="0" className="w-full max-w-45 p-2 px-4 outline-none border border-slate-200 rounded" required />
                 </label>
                 <label className="flex flex-col gap-2 ">
-                    Offer Price ($)
+                    Offer Price (SLe)
                     <input type="number" name="price" onChange={onChangeHandler} value={productInfo.price} placeholder="0" className="w-full max-w-45 p-2 px-4 outline-none border border-slate-200 rounded" required />
                 </label>
             </div>
@@ -166,3 +166,4 @@ export default function StoreAddProduct() {
         </form>
     )
 }
+

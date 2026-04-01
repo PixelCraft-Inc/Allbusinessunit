@@ -18,7 +18,7 @@ export default function StoreOrders() {
     const fetchOrders = async () => {
        try {
         const token = await getToken()
-        const { data } = await axios.get('/api/store/orders', {headers: { Authorization: `Bearer ${token}` }})
+        const { data } = await axios.get('/api/store/orders', {headers: { Authorization: `Bearer SLe{token}` }})
         setOrders(data.orders)
        } catch (error) {
         toast.error(error?.response?.data?.error || error.message)
@@ -30,7 +30,7 @@ export default function StoreOrders() {
     const updateOrderStatus = async (orderId, status) => {
         try {
             const token = await getToken()
-            await axios.post('/api/store/orders',{orderId, status}, {headers: { Authorization: `Bearer ${token}` }})
+            await axios.post('/api/store/orders',{orderId, status}, {headers: { Authorization: `Bearer SLe{token}` }})
             setOrders(prev =>
                 prev.map(order => 
                     order.id === orderId ? {...order, status} : order
@@ -84,7 +84,7 @@ export default function StoreOrders() {
                                         {index + 1}
                                     </td>
                                     <td className="px-4 py-3">{order.user?.name}</td>
-                                    <td className="px-4 py-3 font-medium text-slate-800">${order.total}</td>
+                                    <td className="px-4 py-3 font-medium text-slate-800">SLe{order.total}</td>
                                     <td className="px-4 py-3">{order.paymentMethod}</td>
                                     <td className="px-4 py-3">
                                         {order.isCouponUsed ? (
@@ -131,7 +131,7 @@ export default function StoreOrders() {
                             <p><span className="text-green-700">Name:</span> {selectedOrder.user?.name}</p>
                             <p><span className="text-green-700">Email:</span> {selectedOrder.user?.email}</p>
                             <p><span className="text-green-700">Phone:</span> {selectedOrder.address?.phone}</p>
-                            <p><span className="text-green-700">Address:</span> {`${selectedOrder.address?.street}, ${selectedOrder.address?.city}, ${selectedOrder.address?.state}, ${selectedOrder.address?.zip}, ${selectedOrder.address?.country}`}</p>
+                            <p><span className="text-green-700">Address:</span> {`SLe{selectedOrder.address?.street}, SLe{selectedOrder.address?.city}, SLe{selectedOrder.address?.state}, SLe{selectedOrder.address?.zip}, SLe{selectedOrder.address?.country}`}</p>
                         </div>
 
                         {/* Products */}
@@ -148,7 +148,7 @@ export default function StoreOrders() {
                                         <div className="flex-1">
                                             <p className="text-slate-800">{item.product?.name}</p>
                                             <p>Qty: {item.quantity}</p>
-                                            <p>Price: ${item.price}</p>
+                                            <p>Price: SLe{item.price}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -178,3 +178,4 @@ export default function StoreOrders() {
         </>
     )
 }
+

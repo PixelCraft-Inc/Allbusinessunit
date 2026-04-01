@@ -24,7 +24,7 @@ async function main(base64Image, mimeType) {
             role: "user",
             content: [
                 { type: "text", text: "Analyze this image and return name + description." },
-                { type: "image_url", image_url: { url: `data:${mimeType};base64,${base64Image}` } },
+                { type: "image_url", image_url: { url: `data:SLe{mimeType};base64,SLe{base64Image}` } },
             ],
         },
     ];
@@ -67,3 +67,4 @@ export async function POST(request) {
         return NextResponse.json({ error: error.code || error.message }, { status: 400 });
     }
 }
+

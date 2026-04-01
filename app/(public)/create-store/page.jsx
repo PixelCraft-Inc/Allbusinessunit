@@ -36,7 +36,7 @@ export default function CreateStore() {
     const fetchSellerStatus = async () => {
         const token = await getToken()
         try {
-            const { data } = await axios.get('/api/store/create', {headers: {Authorization: `Bearer ${token}`}})
+            const { data } = await axios.get('/api/store/create', {headers: {Authorization: `Bearer SLe{token}`}})
             if(['approved', 'rejected', 'pending'].includes(data.status)){
                 setStatus(data.status)
                 setAlreadySubmitted(true)
@@ -80,7 +80,7 @@ export default function CreateStore() {
             formData.append("address", storeInfo.address)
             formData.append("image", storeInfo.image)
 
-            const { data } = await axios.post('/api/store/create', formData, {headers: {Authorization: `Bearer ${token}`}})
+            const { data } = await axios.post('/api/store/create', formData, {headers: {Authorization: `Bearer SLe{token}`}})
             toast.success(data.message)
             await fetchSellerStatus()
         } catch (error) {
@@ -111,7 +111,7 @@ export default function CreateStore() {
                         {/* Title */}
                         <div>
                             <h1 className="text-3xl ">Add Your <span className="text-slate-800 font-medium">Store</span></h1>
-                            <p className="max-w-lg">To become a seller on GoCart, submit your store details for review. Your store will be activated after admin verification.</p>
+                            <p className="max-w-lg">To become a seller on ABU Marketplace, submit your store details for review. Your store will be activated after admin verification.</p>
                         </div>
 
                         <label className="mt-10 cursor-pointer">

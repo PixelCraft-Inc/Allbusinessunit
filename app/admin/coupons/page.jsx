@@ -26,7 +26,7 @@ export default function AdminCoupons() {
     const fetchCoupons = async () => {
         try {
             const token = await getToken()
-            const { data } = await axios.get('/api/admin/coupon', {headers: { Authorization: `Bearer ${token}` }})
+            const { data } = await axios.get('/api/admin/coupon', {headers: { Authorization: `Bearer SLe{token}` }})
             setCoupons(data.coupons)
         } catch (error) {
             toast.error(error?.response?.data?.error || error.message)
@@ -41,7 +41,7 @@ export default function AdminCoupons() {
             newCoupon.discount = Number(newCoupon.discount)
             newCoupon.expiresAt = new Date(newCoupon.expiresAt)
 
-            const { data } = await axios.post('/api/admin/coupon',{coupon: newCoupon}, {headers: { Authorization: `Bearer ${token}` }})
+            const { data } = await axios.post('/api/admin/coupon',{coupon: newCoupon}, {headers: { Authorization: `Bearer SLe{token}` }})
             toast.success(data.message)
             await fetchCoupons()
         } catch (error) {
@@ -60,7 +60,7 @@ export default function AdminCoupons() {
             const confirm = window.confirm("Are you sure you want to delete this coupon?")
             if(!confirm) return;
             const token = await getToken()
-            await axios.delete(`/api/admin/coupon?code=${code}`, {headers: { Authorization: `Bearer ${token}` }})
+            await axios.delete(`/api/admin/coupon?code=SLe{code}`, {headers: { Authorization: `Bearer SLe{token}` }})
             await fetchCoupons()
             toast.success("Coupon deleted successfully")
         } catch (error) {

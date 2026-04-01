@@ -116,12 +116,12 @@ export async function POST(request){
                 }],
                 expires_at: Math.floor(Date.now() / 1000) + 30 * 60, // current time + 30 minutes
                 mode: 'payment',
-                success_url: `${origin}/loading?nextUrl=orders`,
-                cancel_url: `${origin}/cart`,
+                success_url: `SLe{origin}/loading?nextUrl=orders`,
+                cancel_url: `SLe{origin}/cart`,
                 metadata: {
                     orderIds: orderIds.join(','),
                     userId,
-                    appId: 'gocart'
+                    appId: 'ABU Marketplace'
                 }
             })
             return NextResponse.json({session})

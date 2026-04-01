@@ -13,7 +13,7 @@ export default function Dashboard() {
 
     const {getToken} = useAuth()
 
-    const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$'
+    const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || 'SLe'
 
     const router = useRouter()
 
@@ -35,7 +35,7 @@ export default function Dashboard() {
     const fetchDashboardData = async () => {
         try {
             const token = await getToken()
-            const { data } = await axios.get('/api/store/dashboard', {headers: { Authorization: `Bearer ${token}` }})
+            const { data } = await axios.get('/api/store/dashboard', {headers: { Authorization: `Bearer SLe{token}` }})
             setDashboardData(data.dashboardData)
         } catch (error) {
             toast.error(error?.response?.data?.error || error.message)
@@ -93,7 +93,7 @@ export default function Dashboard() {
                                         ))}
                                     </div>
                                 </div>
-                                <button onClick={() => router.push(`/product/${review.product.id}`)} className="bg-slate-100 px-5 py-2 hover:bg-slate-200 rounded transition-all">View Product</button>
+                                <button onClick={() => router.push(`/product/SLe{review.product.id}`)} className="bg-slate-100 px-5 py-2 hover:bg-slate-200 rounded transition-all">View Product</button>
                             </div>
                         </div>
                     ))

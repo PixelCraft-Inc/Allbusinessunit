@@ -13,7 +13,7 @@ const OrderSummary = ({ totalPrice, items }) => {
     const {user} = useUser()
     const { getToken } = useAuth()
     const dispatch = useDispatch()
-    const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$';
+    const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || 'SLe';
 
     const router = useRouter();
 
@@ -33,7 +33,7 @@ const OrderSummary = ({ totalPrice, items }) => {
             }
             const token = await getToken();
             const { data } = await axios.post('/api/coupon', {code: couponCodeInput}, {
-                headers: { Authorization: `Bearer ${token}` }
+                headers: { Authorization: `Bearer SLe{token}` }
             })
             setCoupon(data.coupon)
             toast.success('Coupon Applied')
@@ -65,7 +65,7 @@ const OrderSummary = ({ totalPrice, items }) => {
             }
            // create order
            const {data} = await axios.post('/api/orders', orderData, {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer SLe{token}` }
            })
 
            if(paymentMethod === 'STRIPE'){
@@ -131,8 +131,8 @@ const OrderSummary = ({ totalPrice, items }) => {
                     </div>
                     <div className='flex flex-col gap-1 font-medium text-right'>
                         <p>{currency}{totalPrice.toLocaleString()}</p>
-                        <p><Protect plan={'plus'} fallback={`${currency}5`}>Free</Protect></p>
-                        {coupon && <p>{`-${currency}${(coupon.discount / 100 * totalPrice).toFixed(2)}`}</p>}
+                        <p><Protect plan={'plus'} fallback={`SLe{currency}5`}>Free</Protect></p>
+                        {coupon && <p>{`-SLe{currency}SLe{(coupon.discount / 100 * totalPrice).toFixed(2)}`}</p>}
                     </div>
                 </div>
                 {
@@ -153,7 +153,7 @@ const OrderSummary = ({ totalPrice, items }) => {
             <div className='flex justify-between py-4'>
                 <p>Total:</p>
                 <p className='font-medium text-right'>
-                    <Protect plan={'plus'} fallback={`${currency}${coupon ? (totalPrice + 5 - (coupon.discount / 100 * totalPrice)).toFixed(2) : (totalPrice + 5).toLocaleString()}`}>  
+                    <Protect plan={'plus'} fallback={`SLe{currency}SLe{coupon ? (totalPrice + 5 - (coupon.discount / 100 * totalPrice)).toFixed(2) : (totalPrice + 5).toLocaleString()}`}>  
                     {currency}{coupon ? (totalPrice - (coupon.discount / 100 * totalPrice)).toFixed(2) : totalPrice.toLocaleString()}
                     </Protect>
                     </p>

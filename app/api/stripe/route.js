@@ -18,7 +18,7 @@ export async function POST(request){
 
             const {orderIds, userId, appId} = session.data[0].metadata
             
-            if(appId !== 'gocart'){
+            if(appId !== 'abu_marketplace'){
                 return NextResponse.json({received: true, message: 'Invalid app id'})
             }
 
