@@ -41,6 +41,7 @@ export default function AdminCoupons() {
             newCoupon.discount = Number(newCoupon.discount)
             newCoupon.expiresAt = new Date(newCoupon.expiresAt)
 
+            newCoupon.discount = Math.min(Number(newCoupon.discount), 10)
             const { data } = await axios.post('/api/admin/coupon',{coupon: newCoupon}, {headers: { Authorization: `Bearer SLe{token}` }})
             toast.success(data.message)
             await fetchCoupons()
@@ -83,7 +84,7 @@ export default function AdminCoupons() {
                     <input type="text" placeholder="Coupon Code" className="w-full mt-2 p-2 border border-slate-200 outline-slate-400 rounded-md"
                         name="code" value={newCoupon.code} onChange={handleChange} required
                     />
-                    <input type="number" placeholder="Coupon Discount (%)" min={1} max={100} className="w-full mt-2 p-2 border border-slate-200 outline-slate-400 rounded-md"
+                    <input type="number" placeholder="Coupon Discount (%)" min={1} max={10} className="w-full mt-2 p-2 border border-slate-200 outline-slate-400 rounded-md"
                         name="discount" value={newCoupon.discount} onChange={handleChange} required
                     />
                 </div>
