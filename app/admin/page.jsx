@@ -7,7 +7,6 @@ import axios from "axios"
 import { CircleDollarSignIcon, ShoppingBasketIcon, StoreIcon, TagsIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
-
 export default function AdminDashboard() {
 
     const { getToken } = useAuth()
