@@ -4,8 +4,16 @@ import { NextResponse } from "next/server";
 
 export async function GET(request){
     try {
+        const { searchParams } = new URL(request.url)
+        const storeId = searchParams.get('storeId')
+
+        let where = { inStock: true }
+        if (storeId) {
+            where.storeId = storeId
+        }
+
         let products = await prisma.product.findMany({
-            where: {inStock: true },
+            where,
             include: {
                 rating: {
                     select: {
