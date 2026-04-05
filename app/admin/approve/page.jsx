@@ -19,7 +19,7 @@ export default function AdminApprove() {
         try {
             const token = await getToken()
             const { data } = await axios.get('/api/admin/approve-store', {
-                 headers: { Authorization: `Bearer SLe{token}` }
+                 headers: { Authorization: `Bearer ${token}` }
             })
             setStores(data.stores)
         } catch (error) {
@@ -32,7 +32,7 @@ export default function AdminApprove() {
         try {
             const token = await getToken()
             const { data } = await axios.post('/api/admin/approve-store', {storeId, status}, {
-                 headers: { Authorization: `Bearer SLe{token}` }
+                 headers: { Authorization: `Bearer ${token}` }
             })
             toast.success(data.message)
             await fetchStores()

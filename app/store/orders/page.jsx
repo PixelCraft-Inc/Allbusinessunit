@@ -18,7 +18,7 @@ export default function StoreOrders() {
     const fetchOrders = async () => {
        try {
         const token = await getToken()
-        const { data } = await axios.get('/api/store/orders', {headers: { Authorization: `Bearer SLe{token}` }})
+        const { data } = await axios.get('/api/store/orders', {headers: { Authorization: `Bearer ${token}` }})
         setOrders(data.orders)
        } catch (error) {
         toast.error(error?.response?.data?.error || error.message)
@@ -30,7 +30,7 @@ export default function StoreOrders() {
     const updateOrderStatus = async (orderId, status) => {
         try {
             const token = await getToken()
-            await axios.post('/api/store/orders',{orderId, status}, {headers: { Authorization: `Bearer SLe{token}` }})
+            await axios.post('/api/store/orders',{orderId, status}, {headers: { Authorization: `Bearer ${token}` }})
             setOrders(prev =>
                 prev.map(order => 
                     order.id === orderId ? {...order, status} : order
@@ -131,7 +131,7 @@ export default function StoreOrders() {
                             <p><span className="text-green-700">Name:</span> {selectedOrder.user?.name}</p>
                             <p><span className="text-green-700">Email:</span> {selectedOrder.user?.email}</p>
                             <p><span className="text-green-700">Phone:</span> {selectedOrder.address?.phone}</p>
-                            <p><span className="text-green-700">Address:</span> {`SLe{selectedOrder.address?.street}, SLe{selectedOrder.address?.city}, SLe{selectedOrder.address?.state}, SLe{selectedOrder.address?.zip}, SLe{selectedOrder.address?.country}`}</p>
+                            <p><span className="text-green-700">Address:</span> {`${selectedOrder.address?.street}, ${selectedOrder.address?.city}, ${selectedOrder.address?.state}, ${selectedOrder.address?.zip}, ${selectedOrder.address?.country}`}</p>
                         </div>
 
                         {/* Products */}

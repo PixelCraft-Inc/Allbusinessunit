@@ -43,7 +43,7 @@ export default function StoreAddProduct() {
                         axios.post(
                             "/api/store/ai",
                             { base64Image: base64String, mimeType },
-                            { headers: { Authorization: `Bearer SLe{token}` } }
+                            { headers: { Authorization: `Bearer ${token}` } }
                         ),
                         {
                             loading: "Analyzing image with AI...",
@@ -93,7 +93,7 @@ export default function StoreAddProduct() {
             })
 
             const token = await getToken()
-            const { data } = await axios.post('/api/store/product', formData, { headers: { Authorization: `Bearer SLe{token}` } })
+            const { data } = await axios.post('/api/store/product', formData, { headers: { Authorization: `Bearer ${token}` } })
             toast.success(data.message)
 
             setProductInfo({ name: "", description: "", mrp: 0, price: 0, category: "" })
@@ -113,7 +113,7 @@ export default function StoreAddProduct() {
 
             <div className="flex gap-3 mt-4">
                 {Object.keys(images).map((key) => (
-                    <label key={key} htmlFor={`imagesSLe{key}`}>
+                    <label key={key} htmlFor={`images${key}`}>
                         <Image
                             width={300}
                             height={300}
@@ -124,7 +124,7 @@ export default function StoreAddProduct() {
                         <input
                             type="file"
                             accept='image/*'
-                            id={`imagesSLe{key}`}
+                            id={`images${key}`}
                             onChange={e => handleImageUpload(key, e.target.files[0])}
                             hidden
                         />

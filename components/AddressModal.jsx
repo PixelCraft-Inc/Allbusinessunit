@@ -34,7 +34,7 @@ const AddressModal = ({ setShowAddressModal }) => {
         e.preventDefault()
         try {
             const token = await getToken()
-            const { data } = await axios.post('/api/address', {address}, {headers: { Authorization: `Bearer SLe{token}` } })
+            const { data } = await axios.post('/api/address', {address}, {headers: { Authorization: `Bearer ${token}` } })
             dispatch(addAddress(data.newAddress))
             toast.success(data.message)
             setShowAddressModal(false)

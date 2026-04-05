@@ -17,7 +17,7 @@ const Navbar = () => {
 
     const handleSearch = (e) => {
         e.preventDefault()
-        router.push(`/shop?search=SLe{search}`)
+        router.push(`/shop?search=${search}`)
     }
 
     return (
