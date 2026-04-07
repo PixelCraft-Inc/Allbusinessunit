@@ -81,7 +81,7 @@ export async function POST(request){
             data: {store: {connect: {id: newStore.id}}}
         })
 
-        return NextResponse.json({message: "applied, waiting for approval"})
+        return NextResponse.json({message: "store created successfully , waiting for approval"})
 
     } catch (error) {
         console.error(error);
